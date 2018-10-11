@@ -1,6 +1,6 @@
 package DBAccess;
 
-import Logic.LoginSampleException;
+import Logic.LegohouseException;
 import Logic.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -56,27 +56,27 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testLogin01() throws LoginSampleException {
+    public void testLogin01() throws LegohouseException {
         // Can we log in
         User user = UserMapper.login( "customer@test.com", "123" );
         assertTrue( user != null );
     }
 
-    @Test( expected = LoginSampleException.class )
-    public void testLogin02() throws LoginSampleException {
+    @Test( expected = LegohouseException.class )
+    public void testLogin02() throws LegohouseException {
         // We should get an exception if we use the wrong password
         User user = UserMapper.login( "customer@test.com", "larsen" );
     }
 
     @Test
-    public void testLogin03() throws LoginSampleException {
+    public void testLogin03() throws LegohouseException {
         // Jens is supposed to be a customer
         User user = UserMapper.login( "customer@test.com", "123" );
         assertEquals( "customer", user.getRole() );
     }
 
     @Test
-    public void testCreateUser01() throws LoginSampleException {
+    public void testCreateUser01() throws LegohouseException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
         User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );

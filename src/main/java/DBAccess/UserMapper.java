@@ -1,6 +1,6 @@
 package DBAccess;
 
-import Logic.LoginSampleException;
+import Logic.LegohouseException;
 import Logic.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.sql.Statement;
  */
 public class UserMapper {
 
-    public static void createUser( User user ) throws LoginSampleException {
+    public static void createUser( User user ) throws LegohouseException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO users (email, password, role) VALUES (?, ?, ?)";
@@ -29,11 +29,11 @@ public class UserMapper {
 //            int id = ids.getInt( 1 );
 //            user.setId( id );
         } catch ( SQLException | ClassNotFoundException ex ) {
-            throw new LoginSampleException( ex.getMessage() );
+            throw new LegohouseException( ex.getMessage() );
         }
     }
 
-    public static User login( String email, String password ) throws LoginSampleException {
+    public static User login( String email, String password ) throws LegohouseException {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT role FROM users "
@@ -49,10 +49,10 @@ public class UserMapper {
                 //user.setId( id );
                 return user;
             } else {
-                throw new LoginSampleException( "Could not validate user" );
+                throw new LegohouseException( "Could not validate user" );
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
-            throw new LoginSampleException(ex.getMessage());
+            throw new LegohouseException(ex.getMessage());
         }
     }
 
