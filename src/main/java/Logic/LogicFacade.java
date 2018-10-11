@@ -1,6 +1,7 @@
 package Logic;
 
-import DBAccess.UserMapper;
+import DBAccess.DataMapper;
+import java.util.List;
 
 /**
  * The purpose of LogicFacade is to...
@@ -9,13 +10,17 @@ import DBAccess.UserMapper;
 public class LogicFacade {
 
     public static User login( String email, String password ) throws LegohouseException {
-        return UserMapper.login( email, password );
+        return DataMapper.login( email, password );
     } 
 
     public static User createUser( String email, String password ) throws LegohouseException {
         User user = new User(email, password, "customer");
-        UserMapper.createUser( user );
+        DataMapper.createUser( user );
         return user;
+    }
+    
+    public static List<Order> getAllOrders () {
+        return DataMapper.getAllOrders();
     }
 
 }

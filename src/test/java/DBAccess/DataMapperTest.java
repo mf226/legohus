@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
-public class UserMapperTest {
+public class DataMapperTest {
 //    Test date in the UsersTest table
 //    INSERT INTO `UsersTest` VALUES 
 //    (1,'jens@somewhere.com','jensen','customer'),
@@ -58,20 +58,20 @@ public class UserMapperTest {
     @Test
     public void testLogin01() throws LegohouseException {
         // Can we log in
-        User user = UserMapper.login( "customer@test.com", "123" );
+        User user = DataMapper.login( "customer@test.com", "123" );
         assertTrue( user != null );
     }
 
     @Test( expected = LegohouseException.class )
     public void testLogin02() throws LegohouseException {
         // We should get an exception if we use the wrong password
-        User user = UserMapper.login( "customer@test.com", "larsen" );
+        User user = DataMapper.login( "customer@test.com", "larsen" );
     }
 
     @Test
     public void testLogin03() throws LegohouseException {
         // Jens is supposed to be a customer
-        User user = UserMapper.login( "customer@test.com", "123" );
+        User user = DataMapper.login( "customer@test.com", "123" );
         assertEquals( "customer", user.getRole() );
     }
 
@@ -80,8 +80,8 @@ public class UserMapperTest {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
         User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
-        UserMapper.createUser( original );
-        User retrieved = UserMapper.login( "king@kong.com", "uhahvorhemmeligt" );
+        DataMapper.createUser( original );
+        User retrieved = DataMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );
     }
 }
