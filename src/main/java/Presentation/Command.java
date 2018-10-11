@@ -1,6 +1,6 @@
-package PresentationLayer;
+package Presentation;
 
-import FunctionLayer.LoginSampleException;
+import Logic.LoginSampleException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +13,7 @@ abstract class Command {
         commands = new HashMap<>();
         commands.put( "login", new Login() );
         commands.put( "register", new Register() );
+        commands.put("backdoorLogin", new backdoorLogin());
     }
 
     static Command from( HttpServletRequest request ) {

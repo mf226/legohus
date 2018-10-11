@@ -1,7 +1,7 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
+import Logic.LoginSampleException;
+import Logic.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,10 +19,10 @@ public class UserMapperTest {
 //    (4,'someone@nowhere.com','sesam','customer');
 
     private static Connection testConnection;
-    private static String USER = "testinguser";
-    private static String USERPW = "try1try2tryAgain";
-    private static String DBNAME = "useradminTest";
-    private static String HOST = "46.101.253.149";
+    private static String USER = "transformer";
+    private static String USERPW = "transformerpass";
+    private static String DBNAME = "legohouse";
+    private static String HOST = "139.59.147.129";
 
     @Before
     public void setUp() {
@@ -36,12 +36,12 @@ public class UserMapperTest {
                 // Make mappers use test 
                 Connector.setConnection( testConnection );
             }
-            // reset test database
-            try ( Statement stmt = testConnection.createStatement() ) {
-                stmt.execute( "drop table if exists Users" );
-                stmt.execute( "create table Users like UsersTest" );
-                stmt.execute( "insert into Users select * from UsersTest" );
-            }
+//            // reset test database
+//            try ( Statement stmt = testConnection.createStatement() ) {
+//                stmt.execute( "drop table if exists Users" );
+//                stmt.execute( "create table Users like UsersTest" );
+//                stmt.execute( "insert into Users select * from UsersTest" );
+//            }
 
         } catch ( ClassNotFoundException | SQLException ex ) {
             testConnection = null;
@@ -58,20 +58,20 @@ public class UserMapperTest {
     @Test
     public void testLogin01() throws LoginSampleException {
         // Can we log in
-        User user = UserMapper.login( "jens@somewhere.com", "jensen" );
+        User user = UserMapper.login( "customer@test.com", "123" );
         assertTrue( user != null );
     }
 
     @Test( expected = LoginSampleException.class )
     public void testLogin02() throws LoginSampleException {
         // We should get an exception if we use the wrong password
-        User user = UserMapper.login( "jens@somewhere.com", "larsen" );
+        User user = UserMapper.login( "customer@test.com", "larsen" );
     }
 
     @Test
     public void testLogin03() throws LoginSampleException {
         // Jens is supposed to be a customer
-        User user = UserMapper.login( "jens@somewhere.com", "jensen" );
+        User user = UserMapper.login( "customer@test.com", "123" );
         assertEquals( "customer", user.getRole() );
     }
 

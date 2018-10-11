@@ -44,6 +44,13 @@
                         <input type="submit" value="Submit">
                     </form>
                 </td>
+                <td>Backdoor employee login</td>
+                <td>
+                    <form name="backdoorLogin" action="FrontController" method="POST">
+                        <input type="hidden" name="command" value="backdoorLogin">
+                        <input type="submit" value="Submit">
+                    </form>
+                </td>
             </tr>
         </table>
         <% String error = (String) request.getAttribute( "error");

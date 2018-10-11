@@ -1,8 +1,8 @@
-package PresentationLayer;
+package Presentation;
 
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
+import Logic.LogicFacade;
+import Logic.LoginSampleException;
+import Logic.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
