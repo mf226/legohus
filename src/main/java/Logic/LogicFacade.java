@@ -19,8 +19,12 @@ public class LogicFacade {
         return user;
     }
     
-    public static List<Order> getAllOrders () {
+    public static List<Order> getAllOrders () throws LegohouseException {
         return DataMapper.getAllOrders();
+    }
+
+    public static Legohouse createLegohouse(int length, int width, int height) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

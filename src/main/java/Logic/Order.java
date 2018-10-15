@@ -9,6 +9,14 @@ public class Order {
     private User user;
     private boolean shipped;
 
+    public Order(int length, int width, int height, User user, boolean shipped) {
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.user = user;
+        this.shipped = shipped;
+    }
+
     public Order(int order_id, int length, int width, int height, User user, boolean shipped) {
         this.order_id = order_id;
         this.length = length;
@@ -44,6 +52,10 @@ public class Order {
 
     public void setShipped(boolean shipped) {
         this.shipped = shipped;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
     
     

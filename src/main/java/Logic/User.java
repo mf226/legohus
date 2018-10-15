@@ -1,5 +1,8 @@
 package Logic;
 
+import DBAccess.DataMapper;
+import java.util.List;
+
 /**
  * The purpose of User is to...
  * @author kasper
@@ -38,6 +41,10 @@ public class User {
 
     public void setRole( String role ) {
         this.role = role;
+    }
+    
+    public List<Order> getOrders() throws LegohouseException {
+        return DataMapper.getOrdersByUser(this);
     }
 
 }
