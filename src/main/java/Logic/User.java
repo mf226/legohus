@@ -47,4 +47,9 @@ public class User {
         return DataMapper.getOrdersByUser(this);
     }
 
+    @Override
+    public String toString() {
+        return email;
+    }
+
 }

@@ -27,7 +27,9 @@ public class createLegohouse extends Command {
         System.out.println(height);
         
         Legohouse ls = LogicFacade.createLegohouse(length, width, height);
-        String html = HtmlConverter.legohouseToHtml();
+        String html = HtmlConverter.legohouseToHtml(ls);
+        request.getSession().setAttribute("legohouse", ls);
+        request.setAttribute("pcelist", html);
         return "legohousepage";
     }
     
